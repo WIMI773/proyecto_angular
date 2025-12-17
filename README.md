@@ -16,8 +16,8 @@ Aplicación web de **comercio electrónico** desarrollada con **Angular**, que p
 - Diseño responsive
 - Alertas visuales (SweetAlert u otras)
 
----
 
+```
 ## 📁 Estructura del proyecto
 
 src/
@@ -36,8 +36,8 @@ src/
 │ └── app.config.ts
 ├── assets/
 └── favicon.ico
----
 
+```
 ## 🛠️ Tecnologías utilizadas
 
 - Angular
