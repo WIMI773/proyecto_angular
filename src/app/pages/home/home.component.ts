@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { SearchService } from '../../services/search.service';
 
+
 @Component({
   selector: 'app-home',
   standalone: true,
