@@ -1,18 +1,17 @@
 <nav class="navbar">
   <div class="navbar-content">
+
     <!-- LOGO -->
     <div class="logo">
-      <a routerLink="/" (click)="closeMenu()">
-        <span class="logo-icon"></span>
-        WStore
-      </a>
+      <a routerLink="/" (click)="closeMenu()">WStore</a>
     </div>
 
     <!-- HAMBURGER -->
     <button
       class="hamburger"
-      (click)="toggleMenu()"
       [class.active]="mobileMenuOpen"
+      (click)="toggleMenu()"
+      aria-label="Abrir menú"
     >
       <span></span>
       <span></span>
@@ -21,21 +20,24 @@
 
     <!-- LINKS -->
     <ul class="nav-links" [class.active]="mobileMenuOpen">
-      <li><a routerLink="/" (click)="closeMenu()">Inicio</a></li>
-      <li><a routerLink="/products" (click)="closeMenu()">Productos</a></li>
+      <li>
+        <a routerLink="/" (click)="closeMenu()">Inicio</a>
+      </li>
+      <li>
+        <a routerLink="/products" (click)="closeMenu()">Productos</a>
+      </li>
     </ul>
 
-    <!-- 🔍 BUSCADOR -->
-    <input
-  type="text"
-  placeholder="Buscar productos..."
-  [(ngModel)]="search"
-  (keyup.enter)="searchProduct()"
-/>
-<button type="button" class="search-btn" (click)="searchProduct()">
-  Buscar
-</button>
-
+    <!-- BUSCADOR -->
+    <div class="navbar-search">
+      <input
+        type="text"
+        placeholder="Buscar productos..."
+        [(ngModel)]="search"
+        (keyup.enter)="searchProduct()"
+      />
+      <button class="search-btn" (click)="searchProduct()">Buscar</button>
+    </div>
 
     <!-- ACCIONES -->
     <div class="navbar-actions">
@@ -50,13 +52,10 @@
         Ingresar
       </a>
 
-      <button
-        *ngIf="isLogged"
-        class="btn-login"
-        (click)="logout()"
-      >
+      <button *ngIf="isLogged" class="btn-login" (click)="logout()">
         Salir
       </button>
     </div>
+
   </div>
 </nav>

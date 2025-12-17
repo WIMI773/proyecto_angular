@@ -279,3 +279,11 @@ textarea {
     padding: 0 16px;
   }
 }
+
+@media (max-width: 768px) {
+  .container-main {
+    max-width: 100%;
+    padding: 16px 12px;
+  }
+}
+

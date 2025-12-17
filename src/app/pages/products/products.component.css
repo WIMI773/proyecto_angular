@@ -9,10 +9,12 @@
 }
 
 .container-main {
+  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px 16px;
 }
+
 
 /* ===== HEADER ===== */
 .products-header {
@@ -293,4 +295,22 @@
 @media(max-width:480px) {
   .products-container { grid-template-columns: repeat(2,1fr) }
   .product-actions { flex-direction: column }
+}
+
+@media (max-width: 480px) {
+  .product-card {
+    border-radius: 10px;
+  }
+
+  .product-body {
+    padding: 14px;
+  }
+
+  .product-name {
+    font-size: 1rem;
+  }
+
+  .product-price {
+    font-size: 1.2rem;
+  }
 }
