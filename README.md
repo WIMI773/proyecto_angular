@@ -22,53 +22,33 @@ Aplicación web de **comercio electrónico** desarrollada con **Angular**, que p
 
 src/
 ├── app/
-│ ├── guards/ # Protección de rutas
+│ ├── guards/
 │ ├── pages/
-│ │ ├── home/ # Página principal
-│ │ ├── login/ # Inicio de sesión
-│ │ ├── products/ # Listado de productos
-│ │ ├── product-form/ # Crear / editar productos
-│ │ └── cart/ # Carrito de compras
-│ ├── services/ # Servicios y consumo de API
+│ │ ├── home/
+│ │ ├── login/
+│ │ ├── products/
+│ │ ├── product-form/
+│ │ └── cart/
+│ ├── services/
 │ ├── shared/
-│ │ └── navbar/ # Barra de navegación
-│ ├── app.routes.ts # Rutas de la aplicación
-│ └── app.config.ts # Configuración general
-├── assets/ # Recursos estáticos
+│ │ └── navbar/
+│ ├── app.routes.ts
+│ └── app.config.ts
+├── assets/
 └── favicon.ico
 ---
 
 ## 🛠️ Tecnologías utilizadas
 
-- **Angular**
-- **TypeScript**
-- **HTML5**
-- **CSS**
-- **API REST**
-- **Git & GitHub**
-
----
-
-## 🔐 Autenticación
-
-- Manejo de sesión mediante **LocalStorage**
-- Protección de rutas usando **Guards**
-- Control de acceso a páginas privadas
-
----
-
-## 📸 Capturas de pantalla
-
-![Login](image.png)
-![Home](image-1.png)
-![Productos](image-2.png)
-![Carrito](image-3.png)
-![Crear Producto](image-4.png)
-![CRUD](image-5.png)
-![Editar Producto](image-6.png)
+- Angular
+- TypeScript
+- HTML5
+- CSS
+- API REST
+- Git & GitHub
 
 ---
 
 ## 👨‍💻 Autor
 
-Desarrollado por **Wilmar Clavijo**
+Wilmar Clavijo
