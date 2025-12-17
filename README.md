@@ -22,19 +22,19 @@ Aplicación web de **comercio electrónico** desarrollada con **Angular**, que p
 
 src/
 ├── app/
-│ ├── guards/
+│ ├── guards/ # Protección de rutas
 │ ├── pages/
-│ │ ├── home/
-│ │ ├── login/
-│ │ ├── products/
-│ │ ├── product-form/
-│ │ └── cart/
-│ ├── services/
+│ │ ├── home/ # Página principal
+│ │ ├── login/ # Inicio de sesión
+│ │ ├── products/ # Listado de productos
+│ │ ├── product-form/ # Crear / editar productos
+│ │ └── cart/ # Carrito de compras
+│ ├── services/ # Servicios y consumo de API
 │ ├── shared/
-│ │ └── navbar/
-│ ├── app.routes.ts
-│ └── app.config.ts
-├── assets/
+│ │ └── navbar/ # Barra de navegación
+│ ├── app.routes.ts # Rutas de la aplicación
+│ └── app.config.ts # Configuración general
+├── assets/ # Recursos estáticos
 └── favicon.ico
 
 ```
