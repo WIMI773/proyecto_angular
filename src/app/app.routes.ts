@@ -12,7 +12,6 @@ export const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
 
-  { path: 'cart', component: CartComponent },
 
   
   {
@@ -29,5 +28,7 @@ export const routes: Routes = [
     path: 'products/edit/:id',
     component: ProductFormComponent,
     canActivate: [authGuard]
-  }
+  },
+
+  { path: 'cart', component: CartComponent, canActivate: [authGuard] },
 ];

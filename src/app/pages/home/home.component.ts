@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { CartService, CartItem } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   /* ================== CART ================== */
   cart: CartItem[] = [];
   cartSubscription?: Subscription;
+  searchSubscription?: Subscription;
 
   /* ================== CAROUSEL ================== */
   currentSlide = 0;
@@ -37,46 +39,60 @@ export class HomeComponent implements OnInit, OnDestroy {
     private productsService: ProductsService,
     private router: Router,
     public authService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
+    private searchService: SearchService
   ) {}
 
   /* ================== LIFECYCLE ================== */
-  ngOnInit() {
+  ngOnInit(): void {
+    // 🔹 1. Cargar productos desde la API
     this.loadProducts();
 
-    // Carrito en tiempo real
+    // 🔹 2. Escuchar búsqueda del navbar
+    this.searchSubscription = this.searchService.search$.subscribe(search => {
+      this.searchQuery = search;
+      this.searchProducts();
+
+      // Si solo hay un resultado, navegar automáticamente
+      if (this.filteredProducts.length === 1) {
+        this.navigateToProductDetail(this.filteredProducts[0].id);
+      }
+    });
+
+    // 🔹 3. Carrito en tiempo real
     this.cartSubscription = this.cartService.cart$.subscribe(cart => {
       this.cart = cart;
     });
 
-    // Iniciar carrusel
+    // 🔹 4. Iniciar carrusel
     this.startCarousel();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.cartSubscription?.unsubscribe();
+    this.searchSubscription?.unsubscribe();
     clearInterval(this.carouselInterval);
   }
 
   /* ================== CAROUSEL LOGIC ================== */
-  startCarousel() {
+  startCarousel(): void {
     this.carouselInterval = setInterval(() => {
       this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
     }, 5000);
   }
 
-  goToSlide(index: number) {
+  goToSlide(index: number): void {
     this.currentSlide = index;
   }
 
-  scrollToProducts() {
+  scrollToProducts(): void {
     document
       .querySelector('.products-section-full')
       ?.scrollIntoView({ behavior: 'smooth' });
   }
 
   /* ================== PRODUCTS ================== */
-  loadProducts() {
+  loadProducts(): void {
     this.loading = true;
     this.productsService.getAll().subscribe({
       next: products => {
@@ -91,19 +107,47 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  searchProducts() {
-    if (!this.searchQuery.trim()) {
+  // 🔹 Filtrar productos mientras escribes
+  searchProducts(): void {
+    const query = this.searchQuery.trim().toLowerCase();
+
+    if (!query) {
+      // Mostrar todos los productos si el input está vacío
       this.filteredProducts = this.allProducts;
       return;
     }
 
-    const query = this.searchQuery.toLowerCase();
     this.filteredProducts = this.allProducts.filter(product =>
       product.title.toLowerCase().includes(query)
     );
   }
 
-  onSortChange(event: any) {
+  // 🔹 Cuando presionas Enter para navegar
+  handleSearchNavigation(): void {
+    if (!this.searchQuery.trim()) return;
+
+    this.searchProducts();
+
+    if (this.filteredProducts.length === 1) {
+      this.navigateToProductDetail(this.filteredProducts[0].id);
+      return;
+    }
+
+    if (this.filteredProducts.length > 1) {
+      this.router.navigate(['/products'], {
+        queryParams: { q: this.searchQuery }
+      });
+      return;
+    }
+
+    Swal.fire({
+      icon: 'info',
+      title: 'Sin resultados',
+      text: 'No se encontraron productos con ese nombre'
+    });
+  }
+
+  onSortChange(event: any): void {
     const sortValue = event.target.value;
 
     switch (sortValue) {
@@ -122,12 +166,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   /* ================== NAVIGATION ================== */
-  navigateToProductDetail(productId: number) {
+  navigateToProductDetail(productId: number): void {
     this.router.navigate(['/products', productId]);
   }
 
   /* ================== CART ================== */
-  addToCart(product: any) {
+  addToCart(product: any): void {
     if (!this.authService.isLogged()) {
       Swal.fire({
         icon: 'warning',
@@ -162,7 +206,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   /* ================== IMAGE FALLBACK ================== */
-  onImageError(event: any) {
+  onImageError(event: any): void {
     event.target.src = 'https://via.placeholder.com/250x250?text=Sin+imagen';
   }
 }

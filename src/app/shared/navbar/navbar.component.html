@@ -1,31 +1,62 @@
 <nav class="navbar">
   <div class="navbar-content">
+    <!-- LOGO -->
     <div class="logo">
-      <a routerLink="/">
+      <a routerLink="/" (click)="closeMenu()">
         <span class="logo-icon"></span>
         WStore
       </a>
     </div>
 
-    <button class="hamburger" (click)="toggleMenu()" [class.active]="mobileMenuOpen">
+    <!-- HAMBURGER -->
+    <button
+      class="hamburger"
+      (click)="toggleMenu()"
+      [class.active]="mobileMenuOpen"
+    >
       <span></span>
       <span></span>
       <span></span>
     </button>
 
+    <!-- LINKS -->
     <ul class="nav-links" [class.active]="mobileMenuOpen">
       <li><a routerLink="/" (click)="closeMenu()">Inicio</a></li>
       <li><a routerLink="/products" (click)="closeMenu()">Productos</a></li>
     </ul>
 
+    <!-- 🔍 BUSCADOR -->
+    <input
+  type="text"
+  placeholder="Buscar productos..."
+  [(ngModel)]="search"
+  (keyup.enter)="searchProduct()"
+/>
+<button type="button" class="search-btn" (click)="searchProduct()">
+  Buscar
+</button>
+
+
+    <!-- ACCIONES -->
     <div class="navbar-actions">
       <a routerLink="/cart" class="cart-badge">
         🛒
-        <span class="cart-count" *ngIf="cartCount > 0">{{ cartCount }}</span>
+        <span class="cart-count" *ngIf="cartCount > 0">
+          {{ cartCount }}
+        </span>
       </a>
-      
-      <a *ngIf="!isLogged" class="btn-login" routerLink="/login">Ingresar</a>
-      <button *ngIf="isLogged" class="btn-login" (click)="logout()">Salir</button>
+
+      <a *ngIf="!isLogged" class="btn-login" routerLink="/login">
+        Ingresar
+      </a>
+
+      <button
+        *ngIf="isLogged"
+        class="btn-login"
+        (click)="logout()"
+      >
+        Salir
+      </button>
     </div>
   </div>
 </nav>

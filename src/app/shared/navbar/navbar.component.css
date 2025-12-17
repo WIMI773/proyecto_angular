@@ -101,9 +101,9 @@
 
 .btn-login {
   padding: 10px 20px;
-    background-color: #000000;
-  color: white;
-  border: none;
+    background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0.808);
   border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
@@ -263,3 +263,38 @@
     font-size: 18px;
   }
 }
+
+
+/* ===== BUSCADOR NAVBAR (FIX DEFINITIVO) ===== */
+.navbar-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 360px;
+  width: 100%;
+}
+
+.navbar-search input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  font-size: 14px;
+  min-width: 0;
+}
+
+.search-btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.808);
+  background: #000;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.search-btn:hover {
+  background: #111;
+}
+
