@@ -1,27 +1,79 @@
-# Ecommerce
+#  E-Commerce Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+Aplicación web de **comercio electrónico** desarrollada con **Angular**, que permite a los usuarios navegar productos, autenticarse, gestionar un carrito de compras y administrar productos mediante formularios.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+##  Características principales
 
-## Code scaffolding
+-  Autenticación de usuarios (Login)
+-  Página de inicio (Home)
+-  Listado de productos
+-  Creación y edición de productos
+-  Carrito de compras
+-  Navegación protegida con Guards
+-  Consumo de API REST
+-  Diseño responsive
+-  Alertas visuales (SweetAlert u otras)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## Estructura del proyecto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+src/
+├── app/
+│ ├── guards/ # Protección de rutas
+│ ├── pages/
+│ │ ├── home/ # Página principal
+│ │ ├── login/ # Inicio de sesión
+│ │ ├── products/ # Listado de productos
+│ │ ├── product-form/ # Crear / editar productos
+│ │ └── cart/ # Carrito de compras
+│ ├── services/ # Servicios y consumo de API
+│ ├── shared/
+│ │ └── navbar/ # Barra de navegación
+│ ├── app.routes.ts # Rutas de la aplicación
+│ └── app.config.ts # Configuración general
+├── assets/ # Recursos estáticos
+└── favicon.ico
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## Tecnologías utilizadas
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- **Angular**
+- **TypeScript**
+- **HTML5**
+- **CSS**
+- **API REST**
+- **Git & GitHub**
 
-## Further help
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Autenticación
+
+-Manejo de sesión mediante LocalStorage
+
+-Protección de rutas usando Guards
+
+-Control de acceso a páginas privadas
+
+
+## 📸 Capturas de pantalla
+
+![Login](image.png)
+![Home](image-1.png)
+![Productos](image-2.png)
+![Carrito](image-3.png)
+![Crear Producto](image-4.png)
+![CRUD](image-5.png)
+![Editar Producto](image-6.png)
+
+
+
+
+👨‍💻 Autor
+
+Desarrollado por Wilmar Clavijo
