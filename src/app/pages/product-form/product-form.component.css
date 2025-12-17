@@ -156,3 +156,10 @@
     flex-direction: column;
   }
 }
+
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 20px 16px;
+  }
+}

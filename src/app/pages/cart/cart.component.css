@@ -144,3 +144,14 @@ ng-template p {
     height: 24px;
   }
 }
+
+@media (max-width: 480px) {
+  .cart-container {
+    max-width: 100%;
+    margin: 10px;
+  }
+
+  .cart-item {
+    align-items: flex-start;
+  }
+}
