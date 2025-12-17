@@ -38,17 +38,41 @@ src/
 └── favicon.ico
 
 ```
+
+---
+
 ## 🛠️ Tecnologías utilizadas
 
-- Angular
-- TypeScript
-- HTML5
-- CSS
-- API REST
-- Git & GitHub
+- **Angular**
+- **TypeScript**
+- **HTML5**
+- **CSS**
+- **API REST**
+- **Git & GitHub**
+
+---
+
+## 🔐 Autenticación
+
+- Manejo de sesión mediante **LocalStorage**
+- Protección de rutas usando **Guards**
+- Control de acceso a páginas privadas
+
+---
+
+## 📸 Capturas de pantalla
+
+![Login](image.png)
+![Home](image-1.png)
+![Productos](image-2.png)
+![Carrito](image-3.png)
+![Crear Producto](image-4.png)
+![CRUD](image-5.png)
+![Editar Producto](image-6.png)
 
 ---
 
 ## 👨‍💻 Autor
 
-Wilmar Clavijo
+Desarrollado por **Wilmar Clavijo**
+
