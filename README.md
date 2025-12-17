@@ -1,26 +1,25 @@
-#  E-Commerce Angular
+# 🛒 E-Commerce Angular
 
 Aplicación web de **comercio electrónico** desarrollada con **Angular**, que permite a los usuarios navegar productos, autenticarse, gestionar un carrito de compras y administrar productos mediante formularios.
 
 ---
 
-##  Características principales
+## ✨ Características principales
 
--  Autenticación de usuarios (Login)
--  Página de inicio (Home)
--  Listado de productos
--  Creación y edición de productos
--  Carrito de compras
--  Navegación protegida con Guards
--  Consumo de API REST
--  Diseño responsive
--  Alertas visuales (SweetAlert u otras)
+- Autenticación de usuarios (Login)
+- Página de inicio (Home)
+- Listado de productos
+- Creación y edición de productos
+- Carrito de compras
+- Navegación protegida con Guards
+- Consumo de API REST
+- Diseño responsive
+- Alertas visuales (SweetAlert u otras)
 
+---
 
+## 📁 Estructura del proyecto
 
-## Estructura del proyecto
-
-´´´
 src/
 ├── app/
 │ ├── guards/ # Protección de rutas
@@ -37,11 +36,9 @@ src/
 │ └── app.config.ts # Configuración general
 ├── assets/ # Recursos estáticos
 └── favicon.ico
+---
 
-
-´´´
-
-## Tecnologías utilizadas
+## 🛠️ Tecnologías utilizadas
 
 - **Angular**
 - **TypeScript**
@@ -52,15 +49,13 @@ src/
 
 ---
 
+## 🔐 Autenticación
 
-## Autenticación
+- Manejo de sesión mediante **LocalStorage**
+- Protección de rutas usando **Guards**
+- Control de acceso a páginas privadas
 
--Manejo de sesión mediante LocalStorage
-
--Protección de rutas usando Guards
-
--Control de acceso a páginas privadas
-
+---
 
 ## 📸 Capturas de pantalla
 
@@ -72,9 +67,8 @@ src/
 ![CRUD](image-5.png)
 ![Editar Producto](image-6.png)
 
+---
 
+## 👨‍💻 Autor
 
-
-👨‍💻 Autor
-
-Desarrollado por Wilmar Clavijo
+Desarrollado por **Wilmar Clavijo**
