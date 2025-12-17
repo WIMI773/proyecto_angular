@@ -1,0 +1,122 @@
+.login-wrapper {
+  width: 100%; /* Ocupa todo el ancho de la pantalla */
+  min-height: calc(100vh - 80px); /* Altura mínima: pantalla completa menos 80px (navbar) */
+  display: flex; /* Activa Flexbox */
+  align-items: center; /* Centra el contenido verticalmente */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  padding: 20px; /* Espacio interno alrededor del contenido */
+  background: white
+}
+
+
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border: 1px solid #cfcdcd;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+  
+}
+
+.login-header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  color: #000000;
+  
+}
+
+.login-header p {
+  color: #64748b;
+  font-size: 0.95rem;
+  
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #0f172a;
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  padding: 12px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
+}
+
+.form-group input::placeholder {
+  color: #cbd5e1;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.btn-large {
+  padding: 12px;
+  font-size: 1rem;
+  margin-top: 10px;
+  background-color: #0c0d0e;
+  
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #991b1b;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.error-icon {
+  font-size: 1.2rem;
+}
+
+
+
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 30px 20px;
+  }
+
+  .login-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .login-form {
+    gap: 16px;
+  }
+}

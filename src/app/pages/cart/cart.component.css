@@ -1,0 +1,146 @@
+/* Contenedor del carrito */
+.cart-container {
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Título del carrito */
+.cart-container h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #000000;
+  text-align: center;
+}
+
+/* Items del carrito */
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.item-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Información del producto */
+.cart-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9em;
+}
+
+.cart-info span:first-child {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+
+
+/* Controles de cantidad */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.quantity-controls button {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #000000;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quantity-controls button:hover {
+  background-color: #acaeb3;
+}
+
+/* Boton eliminar */
+.remove-btn {
+  background-color: #000000;      /* rojo */
+  color: #ececec;                   /* texto blanco */
+  border: 1px solid #000000;       /* borde rojo oscuro */
+  border-radius: 6px;            /* esquinas redondeadas */
+  padding: 8px 14px;             /* tamaño del botón */
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.remove-btn:hover {
+  background-color: #ececec;     /* rojo más oscuro */
+  color: #000000;
+}
+
+.remove-btn:active {
+  transform: scale(0.95);        /* efecto click */
+}
+
+
+.clear-cart-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #f9f9f9 !important; /* rojo */
+  color: rgb(0, 0, 0);
+  border: 1px solid #000000; /* borde rojo oscuro */
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Total del carrito */
+.cart-total {
+  margin-top: 15px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: right;
+  color: #000000;
+}
+
+/* Carrito vacío */
+ng-template p {
+  text-align: center;
+  color: #000000;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 300px) {
+  .cart-container {
+    padding: 15px;
+  }
+
+  .item-img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .quantity-controls button {
+    width: 24px;
+    height: 24px;
+  }
+}

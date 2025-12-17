@@ -1,0 +1,97 @@
+<div class="form-wrapper">
+  <div class="form-container">
+    <!-- Encabezado -->
+    <div class="form-header">
+      <h1>{{ editing ? '✏️ Editar' : '➕ Crear' }} Producto</h1>
+      <p>{{ editing ? 'Actualiza la información del producto' : 'Agrega un nuevo producto a tu tienda' }}</p>
+    </div>
+
+    <!-- Formulario -->
+    <form [formGroup]="form" (ngSubmit)="save()" class="product-form">
+      
+      <!-- Nombre del Producto -->
+      <div class="form-group">
+        <label for="title">Nombre del Producto *</label>
+        <input
+          id="title"
+          type="text"
+          formControlName="title"
+          placeholder="Ej: Laptop Gaming ASUS"
+          required
+        />
+        <span class="error" *ngIf="form.get('title')?.invalid && form.get('title')?.touched">
+          El nombre es requerido
+        </span>
+      </div>
+
+      <!-- Precio y Categoría -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="price">Precio ($) *</label>
+          <input
+            id="price"
+            type="number"
+            formControlName="price"
+            placeholder="0.00"
+            min="0"
+            step="0.01"
+            required
+          />
+          <span class="error" *ngIf="form.get('price')?.invalid && form.get('price')?.touched">
+            El precio es requerido
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="categoryId">Categoría *</label>
+          <select id="categoryId" formControlName="categoryId" required>
+            <option value="1">Electrónica</option>
+            <option value="2">Ropa</option>
+            <option value="3">Libros</option>
+            <option value="4">Hogar</option>
+            <option value="5">Deportes</option>
+          </select>
+          <span class="error" *ngIf="form.get('categoryId')?.invalid && form.get('categoryId')?.touched">
+            La categoría es requerida
+          </span>
+        </div>
+      </div>
+
+      <!-- Descripción -->
+      <div class="form-group">
+        <label for="description">Descripción *</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          placeholder="Describe detalladamente el producto..."
+          required
+        ></textarea>
+        <span class="error" *ngIf="form.get('description')?.invalid && form.get('description')?.touched">
+          La descripción es requerida
+        </span>
+      </div>
+
+      <!-- Imágenes -->
+      <div class="form-group">
+        <label for="images">URL de la Imagen</label>
+        <input
+          id="images"
+          type="text"
+          formControlName="images"
+          placeholder="https://ejemplo.com/imagen.jpg"
+        />
+        <small class="helper-text">Solo una URL por ahora. Se enviará como arreglo a la API.</small>
+      </div>
+
+      <!-- Acciones -->
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-large" [disabled]="!form.valid || loading">
+          {{ editing ? '💾 Actualizar' : '✅ Crear Producto' }}
+        </button>
+        <a routerLink="/products" class="btn btn-secondary btn-large">
+          ← Cancelar
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
