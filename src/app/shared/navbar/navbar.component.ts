@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.cartSubscription?.unsubscribe();
   }
 
-  get isLogged(): boolean { //saber si el usuario esta logueado
+  get isLogged(): boolean { //saber si el usuario esta logueado...
     return this.auth.isLogged();
   }
 
