@@ -69,7 +69,7 @@ export class ProductFormComponent implements OnInit {
 
     this.loading = true;
 
-    // Construye el objeto para la API
+    // Construye el objeto para la API...
     const data = {
       title: this.form.value.title,
       price: Number(this.form.value.price),
