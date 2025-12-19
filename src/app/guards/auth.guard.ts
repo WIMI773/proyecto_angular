@@ -9,7 +9,7 @@ export const authGuard: CanActivateFn = () => {
   if (auth.isLogged()) {
     return true; 
   }
-//Ruta protegida...
+//Ruta protegida....
   router.navigate(['/login']);
   return false;
 
