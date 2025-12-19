@@ -148,25 +148,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       text: 'No se encontraron productos con ese nombre'
     });
   }
-
-  onSortChange(event: any): void {
-    const sortValue = event.target.value;
-
-    switch (sortValue) {
-      case 'menor':
-        this.filteredProducts.sort((a, b) => a.price - b.price);
-        break;
-      case 'mayor':
-        this.filteredProducts.sort((a, b) => b.price - a.price);
-        break;
-      case 'nuevos':
-        this.filteredProducts.sort((a, b) => b.id - a.id);
-        break;
-      default:
-        this.filteredProducts = [...this.allProducts];
-    }
-  }
-
   
   navigateToProductDetail(productId: number): void {
     this.router.navigate(['/products', productId]);

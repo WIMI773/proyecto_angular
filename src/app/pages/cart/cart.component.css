@@ -1,4 +1,4 @@
-/* Contenedor del carrito */
+
 .cart-container {
   width: 100%;
   max-width: 400px;
@@ -10,7 +10,7 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* Título del carrito */
+
 .cart-container h2 {
   margin-top: 0;
   margin-bottom: 15px;
@@ -19,7 +19,7 @@
   text-align: center;
 }
 
-/* Items del carrito */
+
 .cart-item {
   display: flex;
   align-items: center;
@@ -35,7 +35,7 @@
   border-radius: 8px;
 }
 
-/* Información del producto */
+
 .cart-info {
   flex: 1;
   display: flex;
