@@ -28,6 +28,7 @@ export class ProductsComponent implements OnInit {
     this.isLogged = this.authService.isLogged();
   }
 
+  //
   loadProducts() {
     this.productService.getAll().subscribe(res => {
       this.products = res;
