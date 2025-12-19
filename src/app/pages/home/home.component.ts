@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   cartSubscription?: Subscription;
   searchSubscription?: Subscription;
 
-  //Carrusel
+  //Carrusel..
   currentSlide = 0;
   totalSlides = 3;
   carouselInterval: any;
