@@ -65,6 +65,8 @@ export class CartService {
     this.cartSubject.next([...this.cart]);
   }
 
+
+  //Cargar carrito
   private loadCart(): CartItem[] {
     const data = localStorage.getItem('cart');
     return data ? JSON.parse(data) : [];
