@@ -27,7 +27,7 @@ export class LoginComponent {
     next: (res) => {
       console.log('LOGIN OK:', res);
 
-      // SweetAlert de éxito
+      // SweetAlert de éxito...
       Swal.fire({
         icon: 'success',
         title: 'Inicio de sesión correcto',
