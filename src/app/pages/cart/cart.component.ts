@@ -65,6 +65,8 @@ clearCart() {
   });
 }
 
+
+//Total del carrito
   getTotal() {
     return this.cartService.getTotal().toFixed();
   }
