@@ -66,7 +66,7 @@ clearCart() {
 }
 
 
-//Total del carrito
+//Total del carrito//
   getTotal() {
     return this.cartService.getTotal().toFixed();
   }
