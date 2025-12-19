@@ -14,12 +14,14 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent {
 
-  email = '';
-  password = '';
-  errorMessage = '';
+  email = ''; //guarda el email
+  password = ''; //guarda la contraseña
+  errorMessage = '';//guarda el mensaje de error
 
+//se inyectan los servicios necesarios
   constructor(private authService: AuthService, private router: Router) {}
 
+  //FUNCION DEL LOGIN
   onLogin() {
   this.authService.login(this.email, this.password).subscribe({
     next: (res) => {
@@ -33,7 +35,7 @@ export class LoginComponent {
         confirmButtonText: 'Continuar'
       }).then((result) => {
         if (result.isConfirmed) {
-          this.router.navigate(['']); // o '/home' según tu ruta
+          this.router.navigate(['']); // eniva al home
         }
       });
     },
@@ -42,7 +44,7 @@ export class LoginComponent {
       console.log('ERROR LOGIN:', err);
       this.errorMessage = 'Credenciales incorrectas';
 
-      // (opcional) alerta de error
+    
       Swal.fire({
         icon: 'error',
         title: 'Error',

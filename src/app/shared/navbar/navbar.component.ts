@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.cartSubscription = this.cartService.cart$.subscribe(cart => {
+    this.cartSubscription = this.cartService.cart$.subscribe(cart => { //ejecuta, suma y muestra la cantidad de productos en el carrito
       this.cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
     });
   }
@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.cartSubscription?.unsubscribe();
   }
 
-  get isLogged(): boolean {
+  get isLogged(): boolean { //saber si el usuario esta logueado
     return this.auth.isLogged();
   }
 
@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.mobileMenuOpen = false;
   }
 
-  // 🔹 Función al hacer click en el botón Buscar o presionar Enter
+  // Función al hacer click en el botón Buscar 
   searchProduct(): void {
     const query = this.search.trim();
     if (!query) {
@@ -65,7 +65,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // Guardar búsqueda en el servicio
     this.searchService.setSearch(query);
 
-    // Navegar a Home (o a /products si prefieres)
+    // Navegar a Home 
     this.router.navigate(['/']);
     this.closeMenu();
   }

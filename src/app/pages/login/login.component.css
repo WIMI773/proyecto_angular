@@ -5,7 +5,7 @@
   align-items: center; /* Centra el contenido verticalmente */
   justify-content: center; /* Centra el contenido horizontalmente */
   padding: 20px; /* Espacio interno alrededor del contenido */
-  background: white
+  background-color: #f1f5f9; /* Color de fondo claro */
 }
 
 

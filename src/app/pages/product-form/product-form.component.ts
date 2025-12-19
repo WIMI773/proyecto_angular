@@ -12,8 +12,8 @@ import { ProductsService } from '../../services/product.service';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
-  form!: FormGroup;
-  id?: number;
+  form!: FormGroup; //Representa el formulario
+  id?: number; //Guarda el id del producto
   editing = false;
   loading = false;
 

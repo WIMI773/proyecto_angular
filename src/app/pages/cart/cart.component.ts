@@ -11,7 +11,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cart: CartItem[] = [];
+
+  cart: CartItem[] = []; 
 
   constructor(private cartService: CartService) {}
 
@@ -21,17 +22,17 @@ export class CartComponent implements OnInit {
     });
   }
 
-  removeItem(id: number) {
+  removeItem(id: number) { 
     this.cartService.removeFromCart(id);
   }
 
-  increaseQuantity(item: CartItem) {
-    this.cartService.updateQuantity(item.id, item.quantity + 1);
+  increaseQuantity(item: CartItem) { 
+    this.cartService.updateQuantity(item.id, item.quantity + 1); 
   }
 
   decreaseQuantity(item: CartItem) {
-    if (item.quantity > 1) {
-      this.cartService.updateQuantity(item.id, item.quantity - 1);
+    if (item.quantity > 1) { 
+      this.cartService.updateQuantity(item.id, item.quantity - 1); 
     } else {
       this.removeItem(item.id);
     }
@@ -52,8 +53,7 @@ clearCart() {
   }).then((result) => {
     if (result.isConfirmed) {
 
-      // 🔥 AQUÍ se vacía el carrito
-      this.cartService.clearCart();
+      this.cartService.clearCart(); 
 
       Swal.fire({
         title: 'Carrito vacío',
@@ -66,6 +66,6 @@ clearCart() {
 }
 
   getTotal() {
-    return this.cartService.getTotal().toFixed(2);
+    return this.cartService.getTotal().toFixed();
   }
 }

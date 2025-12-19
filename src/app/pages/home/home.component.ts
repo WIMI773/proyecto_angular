@@ -19,24 +19,25 @@ import { SearchService } from '../../services/search.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  /* ================== PRODUCTS ================== */
-  searchQuery = '';
-  allProducts: any[] = [];
-  filteredProducts: any[] = [];
+  
+  searchQuery = ''; //guarda lo que se busca
+  allProducts: any[] = []; //productos de la API
+  filteredProducts: any[] = []; 
   loading = true;
   error = '';
 
-  /* ================== CART ================== */
-  cart: CartItem[] = [];
+  
+  cart: CartItem[] = []; //variables del carrito
   cartSubscription?: Subscription;
   searchSubscription?: Subscription;
 
-  /* ================== CAROUSEL ================== */
+  //Carrusel
   currentSlide = 0;
   totalSlides = 3;
   carouselInterval: any;
 
   constructor(
+    //se inyectan todos los servicios necesarios
     private productsService: ProductsService,
     private router: Router,
     public authService: AuthService,
@@ -44,28 +45,27 @@ export class HomeComponent implements OnInit, OnDestroy {
     private searchService: SearchService
   ) {}
 
-  /* ================== LIFECYCLE ================== */
+  
   ngOnInit(): void {
-    // 🔹 1. Cargar productos desde la API
+    // Cargar productos desde la API
     this.loadProducts();
 
-    // 🔹 2. Escuchar búsqueda del navbar
+    // Escuchar búsqueda del navbar
     this.searchSubscription = this.searchService.search$.subscribe(search => {
       this.searchQuery = search;
       this.searchProducts();
 
-      // Si solo hay un resultado, navegar automáticamente
       if (this.filteredProducts.length === 1) {
         this.navigateToProductDetail(this.filteredProducts[0].id);
       }
     });
 
-    // 🔹 3. Carrito en tiempo real
-    this.cartSubscription = this.cartService.cart$.subscribe(cart => {
+    //carrito se actualiza automaticamente
+    this.cartSubscription = this.cartService.cart$.subscribe(cart => { 
       this.cart = cart;
     });
 
-    // 🔹 4. Iniciar carrusel
+    
     this.startCarousel();
   }
 
@@ -75,13 +75,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     clearInterval(this.carouselInterval);
   }
 
-  /* ================== CAROUSEL LOGIC ================== */
+  
   startCarousel(): void {
     this.carouselInterval = setInterval(() => {
       this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
     }, 5000);
   }
 
+  //Cambiar slide manualmente
   goToSlide(index: number): void {
     this.currentSlide = index;
   }
@@ -92,7 +93,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       ?.scrollIntoView({ behavior: 'smooth' });
   }
 
-  /* ================== PRODUCTS ================== */
+  
   loadProducts(): void {
     this.loading = true;
     this.productsService.getAll().subscribe({
@@ -108,7 +109,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  // 🔹 Filtrar productos mientras escribes
+  // Filtrar productos mientras escribes
   searchProducts(): void {
     const query = this.searchQuery.trim().toLowerCase();
 
@@ -123,7 +124,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  // 🔹 Cuando presionas Enter para navegar
+  
   handleSearchNavigation(): void {
     if (!this.searchQuery.trim()) return;
 
@@ -166,12 +167,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  /* ================== NAVIGATION ================== */
+  
   navigateToProductDetail(productId: number): void {
     this.router.navigate(['/products', productId]);
   }
 
-  /* ================== CART ================== */
+  
   addToCart(product: any): void {
     if (!this.authService.isLogged()) {
       Swal.fire({
@@ -206,7 +207,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  /* ================== IMAGE FALLBACK ================== */
+  
   onImageError(event: any): void {
     event.target.src = 'https://via.placeholder.com/250x250?text=Sin+imagen';
   }
