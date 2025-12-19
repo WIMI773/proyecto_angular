@@ -37,7 +37,7 @@ export class ProductsService {
     return this.http.post(this.api, product, this.getAuthHeaders());
   }
 
-  // Método para actualizar un producto existente
+  // Método para actualizar un producto existente...
   update(id: number, product: any): Observable<any> {
     return this.http.put(`${this.api}/${id}`, product, this.getAuthHeaders());
   }
