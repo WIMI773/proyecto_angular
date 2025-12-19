@@ -17,6 +17,7 @@ export class SearchService {
     return this.searchSubject.value;
   }
 
+  //
   clear() {
     this.searchSubject.next('');
   }
