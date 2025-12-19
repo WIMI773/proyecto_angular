@@ -23,7 +23,7 @@ export class AuthService {
       );
   }
 
-  // Función para saber si el usuario está logueado...
+  // Función para saber si el usuario está logueado....
   isLogged(): boolean {
     const token = localStorage.getItem('token'); // se obtiene el token del localStorage
     return token !== null && token !== ''; 
