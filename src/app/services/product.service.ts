@@ -32,7 +32,7 @@ export class ProductsService {
     return this.http.get<any>(`${this.api}/${id}`);
   }
 
-  // Método para crear un nuevo producto
+  // Método para crear un nuevo producto...
   create(product: any): Observable<any> {
     return this.http.post(this.api, product, this.getAuthHeaders());
   }
