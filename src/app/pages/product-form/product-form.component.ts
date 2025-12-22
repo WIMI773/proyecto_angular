@@ -44,22 +44,22 @@ export class ProductFormComponent implements OnInit {
   }
 
   loadProduct() {
-    this.productService.getById(this.id!).subscribe({
-      next: (p) => {
-        this.form.patchValue({
-          title: p.title,
-          price: p.price,
-          description: p.description,
-          categoryId: p.category.id,
-          images: p.images[0] || '' // Solo la primera URL
-        });
-      },
-      error: (err) => {
-        console.error('Error al cargar producto:', err);
-        alert('❌ Error al cargar el producto');
-      }
-    });
-  }
+  this.productService.getById(this.id!).subscribe({
+    next: (p) => {
+      this.form.patchValue({
+        title: p.title,
+        price: p.price,
+        description: p.description,
+        categoryId: p.category?.id ?? 1, // ← SOLUCIÓN AQUÍ
+        images: p.images[0] || '' // Solo la primera URL
+      });
+    },
+    error: (err) => {
+      console.error('Error al cargar producto:', err);
+      alert('❌ Error al cargar el producto');
+    }
+  });
+}
 
   save() {
     if (!this.form.valid) {
