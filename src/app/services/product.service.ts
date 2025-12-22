@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../../models/product.model';
+import { CreateProductDTO } from '../../models/create-product.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,27 +22,24 @@ export class ProductsService {
     };
   }
 
-  // Obtener todos los productos
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(this.api);
   }
 
-  // Obtener producto por ID
   getById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.api}/${id}`);
   }
 
-  // Crear producto
-  create(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.api, product, this.getAuthHeaders());
+  // ✅ CREATE
+  create(data: CreateProductDTO): Observable<Product> {
+    return this.http.post<Product>(this.api, data, this.getAuthHeaders());
   }
 
-  // Actualizar producto
-  update(id: number, product: Product): Observable<Product> {
-    return this.http.put<Product>(`${this.api}/${id}`, product, this.getAuthHeaders());
+  // ✅ UPDATE
+  update(id: number, data: CreateProductDTO): Observable<Product> {
+    return this.http.put<Product>(`${this.api}/${id}`, data, this.getAuthHeaders());
   }
 
-  // Eliminar producto
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.api}/${id}`, this.getAuthHeaders());
   }
