@@ -1,50 +1,20 @@
 <div class="home-container">
 
-  <!-- =====  CAROUSEL HEADER ===== -->
-  <header class="hero-carousel">
-    <div
-      class="carousel-track"
-      [style.transform]="'translateX(-' + currentSlide * 100 + '%)'"
-    >
+  <header class="hero-banner">
+    <img src="https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg" alt="Banner principal"
+      class="hero-image" />
 
-      <!-- SLIDE 1 -->
-      <div class="carousel-slide slide-1">
-        <div class="slide-content">
-          <h1>Ofertas Imperdibles</h1>
-          <p>Hasta <strong>40% de descuento</strong> en productos seleccionados</p>
-          
-        </div>
-      </div>
-
-      <!-- SLIDE 2 -->
-      <div class="carousel-slide slide-2">
-        <div class="slide-content">
-          <h1>Nuevos Productos</h1>
-          <p>Descubre las últimas novedades</p>
-          
-        </div>
-      </div>
-
-      <!-- SLIDE 3 -->
-      <div class="carousel-slide slide-3">
-        <div class="slide-content">
-          <h1>Calidad Garantizada</h1>
-          <p>Los mejores precios del mercado</p>
-          
-        </div>
-      </div>
-
-    </div>
-
-    <!-- INDICATORS -->
-    <div class="carousel-dots">
-      <span
-        *ngFor="let dot of [0,1,2]; let i = index"
-        [class.active]="currentSlide === i"
-        (click)="goToSlide(i)">
-      </span>
+    <div class="hero-overlay">
+      <h1>WStore</h1>
+      <p>Calidad, precio y confianza en un solo lugar</p>
+      <button class="hero-btn" (click)="scrollToProducts()">
+        Ver productos
+      </button>
     </div>
   </header>
+
+
+
 
   <!-- ===== MAIN CONTENT ===== -->
   <div class="container-main">
@@ -53,7 +23,7 @@
 
       <!-- HEADER -->
 
-      
+
       <div class="section-header">
         <div class="header-left">
           <h2 class="section-title">Nuestros productos</h2>
@@ -76,23 +46,13 @@
       </div>
 
       <!-- PRODUCTS GRID -->
-      <div
-        class="products-grid"
-        *ngIf="!loading && !error && filteredProducts.length > 0"
-      >
-        <div
-          class="product-card"
-          *ngFor="let product of filteredProducts"
-        >
+      <div class="products-grid" *ngIf="!loading && !error && filteredProducts.length > 0">
+        <div class="product-card" *ngFor="let product of filteredProducts">
           <div class="product-image-container">
-            <img
-              [src]="product.images?.[0]"
-              (error)="onImageError($event)"
-              alt="{{ product.title }}"
-              class="product-image"
-            />
+            <img [src]="product.images?.[0]" (error)="onImageError($event)" alt="{{ product.title }}"
+              class="product-image" />
 
-            
+
           </div>
 
           <div class="product-body">
@@ -109,16 +69,11 @@
               </p>
             </div>
 
-            <button
-              class="btn-add-cart"
-              (click)="addToCart(product)"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2">
+            <button class="btn-add-cart" (click)="addToCart(product)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="9" cy="21" r="1"></circle>
                 <circle cx="20" cy="21" r="1"></circle>
-                <path
-                  d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
                 </path>
               </svg>
               Agregar al carrito
@@ -128,10 +83,7 @@
       </div>
 
       <!-- EMPTY STATE -->
-      <div
-        *ngIf="!loading && !error && filteredProducts.length === 0"
-        class="empty-state"
-      >
+      <div *ngIf="!loading && !error && filteredProducts.length === 0" class="empty-state">
         <div class="empty-icon">🔍</div>
         <h3>No se encontraron productos</h3>
         <p>Intenta con otra búsqueda</p>

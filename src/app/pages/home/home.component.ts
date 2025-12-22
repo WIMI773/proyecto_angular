@@ -31,10 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   cartSubscription?: Subscription;
   searchSubscription?: Subscription;
 
-  //Carrusel...
-  currentSlide = 0;
-  totalSlides = 3;
-  carouselInterval: any;
+ 
 
   constructor(
     //se inyectan todos los servicios necesarios
@@ -66,26 +63,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
 
     
-    this.startCarousel();
+    
   }
 
   ngOnDestroy(): void {
     this.cartSubscription?.unsubscribe();
     this.searchSubscription?.unsubscribe();
-    clearInterval(this.carouselInterval);
   }
 
   
-  startCarousel(): void {
-    this.carouselInterval = setInterval(() => {
-      this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-    }, 5000);
-  }
+  
 
-  //Cambiar slide manualmente
-  goToSlide(index: number): void {
-    this.currentSlide = index;
-  }
+ 
 
   scrollToProducts(): void {
     document

@@ -211,9 +211,58 @@
   background-position: center;
 }
 
-.slide-1 { background-image: url('https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg') }
-.slide-2 { background-image: url('https://images.pexels.com/photos/29650305/pexels-photo-29650305.jpeg') }
-.slide-3 { background-image: url('https://images.pexels.com/photos/7047612/pexels-photo-7047612.jpeg') }
+/* ===== HERO BANNER ===== */
+.hero-banner {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  color: #585858;
+}
+
+.hero-overlay h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero-overlay p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  max-width: 500px;
+}
+
+.hero-btn {
+  width: fit-content;
+  padding: 12px 24px;
+  background: #000000;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.hero-btn:hover {
+  background: #000000;
+}
+
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
