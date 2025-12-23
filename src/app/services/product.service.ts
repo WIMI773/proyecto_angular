@@ -3,13 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../../models/product.model';
 import { CreateProductDTO } from '../../models/create-product.dto';
-
+import { catchError, retry } from 'rxjs/operators';
+import { of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  private api = 'https://api.escuelajs.co/api/v1/products';
+private api = 'https://api.escuelajs.co/api/v1/products?limit=50';
 
   constructor(private http: HttpClient) {}
 
@@ -23,23 +24,30 @@ export class ProductsService {
   }
 
   getAll(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.api);
-  }
+  return this.http.get<Product[]>(this.api).pipe(
+    retry(2), // reintenta 2 veces
+    catchError(err => {
+      console.error('Error API productos', err);
+      return of([]); // evita pantalla vacía
+    })
+  );
+}
 
   getById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.api}/${id}`);
   }
 
-  // ✅ CREATE
+  // Crear
   create(data: CreateProductDTO): Observable<Product> {
     return this.http.post<Product>(this.api, data, this.getAuthHeaders());
   }
 
-  // ✅ UPDATE
+  //  Actualizar
   update(id: number, data: CreateProductDTO): Observable<Product> {
     return this.http.put<Product>(`${this.api}/${id}`, data, this.getAuthHeaders());
   }
 
+  //Eliminar
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.api}/${id}`, this.getAuthHeaders());
   }
