@@ -1,8 +1,12 @@
 <div class="home-container">
 
+  <!-- ===== HERO ===== -->
   <header class="hero-banner">
-    <img src="https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg" alt="Banner principal"
-      class="hero-image" />
+    <img
+      src="https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg"
+      alt="Banner principal"
+      class="hero-image"
+    />
 
     <div class="hero-overlay">
       <h1>WStore</h1>
@@ -13,15 +17,11 @@
     </div>
   </header>
 
-
-  <!-- ===== MAIN CONTENT ===== -->
+  <!-- ===== MAIN ===== -->
   <div class="container-main">
-
     <main class="products-section-full">
 
       <!-- HEADER -->
-
-
       <div class="section-header">
         <div class="header-left">
           <h2 class="section-title">Nuestros productos</h2>
@@ -31,28 +31,46 @@
         </div>
       </div>
 
-      <!-- LOADING STATE -->
+      <!-- LOADING -->
       <div *ngIf="loading" class="loading-container">
         <div class="spinner"></div>
         <p>Cargando productos...</p>
       </div>
 
-      <!-- ERROR STATE -->
+      <!-- ERROR -->
       <div *ngIf="error && !loading" class="error-banner">
-        <span class="error-icon">⚠️</span>
-        <p>{{ error }}</p>
+        ⚠️ {{ error }}
       </div>
 
-      <!-- PRODUCTS GRID -->
+      <!-- GRID -->
       <div class="products-grid" *ngIf="!loading && !error && filteredProducts.length > 0">
-        <div class="product-card" *ngFor="let product of filteredProducts">
+
+        <div
+          class="product-card"
+          *ngFor="let product of filteredProducts"
+          (click)="viewDetail(product.id)"
+        >
+
+          <!-- IMAGE -->
           <div class="product-image-container">
-            <img [src]="product.images?.[0]" (error)="onImageError($event)" alt="{{ product.title }}"
-              class="product-image" />
+            <img
+              [src]="product.images?.[0]"
+              (error)="onImageError($event)"
+              alt="{{ product.title }}"
+              class="product-image"
+            />
 
-
+            <div class="product-hover">
+              <button
+                class="btn-view-detail"
+                (click)="viewDetail(product.id); $event.stopPropagation()"
+              >
+                👁 Ver detalles
+              </button>
+            </div>
           </div>
 
+          <!-- BODY -->
           <div class="product-body">
             <h3 class="product-name">{{ product.title }}</h3>
 
@@ -61,28 +79,23 @@
               <span class="rating-count">(125 reseñas)</span>
             </div>
 
-            <div class="product-price-section">
-              <p class="product-price">
-                ${{ product.price.toFixed(2) }}
-              </p>
-            </div>
+            <p class="product-price">
+              ${{ product.price.toFixed(2) }}
+            </p>
 
-            <button class="btn-add-cart" (click)="addToCart(product)">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                </path>
-              </svg>
-              Agregar al carrito
+            <button
+              class="btn-add-cart"
+              (click)="addToCart(product); $event.stopPropagation()"
+            >
+              🛒 Agregar al carrito
             </button>
           </div>
+
         </div>
       </div>
 
-      <!-- EMPTY STATE -->
+      <!-- EMPTY -->
       <div *ngIf="!loading && !error && filteredProducts.length === 0" class="empty-state">
-        <div class="empty-icon">🔍</div>
         <h3>No se encontraron productos</h3>
         <p>Intenta con otra búsqueda</p>
       </div>

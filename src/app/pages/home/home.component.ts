@@ -181,4 +181,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   onImageError(event: any): void {
     event.target.src = 'https://via.placeholder.com/250x250?text=Sin+imagen';
   }
+
+  viewDetail(id: number) {
+    this.router.navigate(['/products', id]);
+  }
+
 }

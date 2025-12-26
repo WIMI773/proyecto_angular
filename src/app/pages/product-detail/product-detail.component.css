@@ -1,0 +1,62 @@
+.detail-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.detail-card {
+  background: #fff;
+  border-radius: 14px;
+  max-width: 900px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 30px;
+}
+
+.detail-card img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.detail-info h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.description {
+  color: #6b7280;
+  margin: 15px 0;
+}
+
+.price {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.btn-add {
+  margin-top: 20px;
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  background: #000;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-back {
+  background: #fff;
+  color: #111827;
+  border: 2px solid #111827;
+  margin-top: 12px;
+}
+
+.btn-back:hover {
+  background: #111827;
+  color: #fff;
+}

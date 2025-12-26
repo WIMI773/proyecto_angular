@@ -176,7 +176,8 @@
   padding: 12px;
   border: 1px solid #000;
   border-radius: 8px;
-  background: #fff;
+  background: #000000;
+  color: white;
   font-weight: 600;
   cursor: pointer;
   transition: .3s;
@@ -262,6 +263,34 @@
 .hero-btn:hover {
   background: #000000;
 }
+
+
+.btn-view-detail {
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+  background: #ffffff;
+  color: #111827;
+  font-size: .9rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.35);
+  transition: all .3s ease;
+}
+
+
+.btn-view-detail:hover {
+  transform: scale(1.08);
+  background: #164722;
+  color: #ffffff;
+}
+
+
+
+
 
 
 /* ===== RESPONSIVE ===== */

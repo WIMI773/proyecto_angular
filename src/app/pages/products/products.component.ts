@@ -56,4 +56,9 @@ export class ProductsComponent implements OnInit {
     this.cartService.addToCart(product);
     alert('✅ Producto agregado al carrito');
   }
+
+  viewDetail(id: number) {
+  this.router.navigate(['/products', id]);
+}
+
 }

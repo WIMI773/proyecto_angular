@@ -1,0 +1,20 @@
+<div class="detail-wrapper" *ngIf="!loading">
+    <div class="detail-card">
+        <img [src]="product.images[0]" [alt]="product.title">
+
+        <div class="detail-info">
+            <h1>{{ product.title }}</h1>
+            <p class="category">{{ product.category?.name }}</p>
+            <p class="description">{{ product.description }}</p>
+            <h2 class="price">$ {{ product.price }}</h2>
+
+            <button class="btn-add" (click)="addToCart(product)">
+                🛒 Agregar al carrito
+            </button>
+
+            <button class="btn-back btn-add" (click)="goBack()">
+                ← Volver
+            </button>
+        </div>
+    </div>
+</div>

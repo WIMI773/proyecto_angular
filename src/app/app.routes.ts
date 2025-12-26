@@ -5,12 +5,14 @@ import { CartComponent } from './pages/cart/cart.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductFormComponent } from './pages/product-form/product-form.component';
 import { authGuard } from './guards/auth.guard';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 export const routes: Routes = [
 
   { path: '', component: HomeComponent },
 
   { path: 'login', component: LoginComponent },
+   { path: 'products/:id', component: ProductDetailComponent },
 
 
   
