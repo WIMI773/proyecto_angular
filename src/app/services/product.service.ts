@@ -10,7 +10,7 @@ import { of } from 'rxjs';
 })
 export class ProductsService {
 
-private api = 'https://api.escuelajs.co/api/v1/products?limit=50';
+private api = 'https://api.escuelajs.co/api/v1/products';
 
   constructor(private http: HttpClient) {}
 

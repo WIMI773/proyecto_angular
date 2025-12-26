@@ -30,12 +30,13 @@
 
         <div class="form-group">
           <label for="categoryId">Categoría *</label>
+          
           <select formControlName="categoryId">
-  <option [ngValue]="1">Electrónica</option>
-  <option [ngValue]="2">Ropa</option>
-  <option [ngValue]="3">Libros</option>
-  <option [ngValue]="4">Hogar</option>
-  <option [ngValue]="5">Deportes</option>
+  <option value="1">Clothes</option>
+  <option value="2">Electronics</option>
+  <option value="3">Furniture</option>
+  <option value="4">Shoes</option>
+  <option value="5">Others</option>
 </select>
 
           <span class="error" *ngIf="form.get('categoryId')?.invalid && form.get('categoryId')?.touched">
