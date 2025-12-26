@@ -171,6 +171,10 @@
   color: #000;
 }
 
+.stars{
+  color: rgb(112, 112, 2);
+}
+
 .btn-add-cart {
   margin-top: auto;
   padding: 12px;
@@ -188,29 +192,7 @@
   box-shadow: 0 6px 20px rgba(59,130,246,.35);
 }
 
-/* ===== HERO ===== */
-.hero-carousel {
-  height: 380px;
-  overflow: hidden;
-  margin-bottom: 50px;
-  box-shadow: 0 10px 40px rgba(0,0,0,.15);
-}
 
-.carousel-track {
-  display: flex;
-  height: 100%;
-  transition: transform .8s ease-in-out;
-}
-
-.carousel-slide {
-  min-width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 80px;
-  color: #fff;
-  background-size: cover;
-  background-position: center;
-}
 
 /* ===== HERO BANNER ===== */
 .hero-banner {
@@ -287,10 +269,6 @@
   background: #164722;
   color: #ffffff;
 }
-
-
-
-
 
 
 /* ===== RESPONSIVE ===== */
