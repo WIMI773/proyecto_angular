@@ -13,7 +13,7 @@ export const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
 
-  // 👇 RUTAS ESPECÍFICAS PRIMERO
+  
   {
     path: 'products/new',
     component: ProductFormComponent,
@@ -25,14 +25,14 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
-  // 👇 LISTADO
+  
   {
     path: 'products',
     component: ProductsComponent,
     canActivate: [authGuard]
   },
 
-  // 👇 DETALLE AL FINAL
+  
   {
     path: 'products/:id',
     component: ProductDetailComponent

@@ -32,7 +32,7 @@ export class ProductFormComponent implements OnInit {
     this.editing = !!this.id;
 
     this.form = this.fb.group({
-      title: ['', Validators.required],
+title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       price: [0, [Validators.required, Validators.min(0)]],
       description: ['', Validators.required],
       categoryId: [1, Validators.required],
