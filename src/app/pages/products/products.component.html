@@ -1,15 +1,25 @@
 <div class="products-wrapper">
   <div class="products-header">
     <h1>Nuestros Productos</h1>
-    <button *ngIf="isLogged" class="btn btn-success create-btn" (click)="goToCreate()">
+
+    <!-- Botón Crear producto solo si está logueado -->
+    <button
+      *ngIf="isLogged"
+      class="btn btn-success create-btn"
+      (click)="goToCreate()">
       ➕ Crear Producto
     </button>
   </div>
 
+  <!-- Lista de productos -->
   <div class="products-container" *ngIf="products.length > 0">
-    <div class="product-card" *ngFor="let p of products">
+    <div
+      class="product-card"
+      *ngFor="let p of products"
+      (click)="viewDetail(p.id)"
+    >
       <div class="product-image-wrapper">
-        <img [src]="p.images[0]" [alt]="p.title" />
+        <img [src]="p.images?.[0]" [alt]="p.title" />
       </div>
 
       <div class="product-info">
@@ -18,20 +28,38 @@
           <p class="product-description">{{ p.description }}</p>
         </div>
 
+        <p class="product-price">
+          $ {{ p.price | number:'1.2-2' }}
+        </p>
+
         <div class="product-meta">
           <span class="product-category">{{ p.category?.name }}</span>
         </div>
 
         <div class="product-actions">
-          <div *ngIf="isLogged" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <button class="btn-edit" (click)="edit(p.id)">Editar</button>
-            <button class="btn-delete" (click)="delete(p.id)"> Eliminar</button>
+          <!-- Solo admin/logueado: Editar y Eliminar -->
+          <div
+            *ngIf="isLogged"
+            style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 5px;"
+          >
+            <button
+              class="btn-edit"
+              (click)="edit(p.id); $event.stopPropagation()">
+              Editar
+            </button>
+
+            <button
+              class="btn-delete"
+              (click)="delete(p.id); $event.stopPropagation()">
+              Eliminar
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Estado vacío -->
   <div class="empty-state" *ngIf="products.length === 0">
     <div class="empty-state-icon"></div>
     <h2>No hay productos disponibles</h2>

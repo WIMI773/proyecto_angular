@@ -51,4 +51,18 @@ private api = 'https://api.escuelajs.co/api/v1/products';
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.api}/${id}`, this.getAuthHeaders());
   }
+
+  getByCategory(categoryId: number) {
+  return this.http.get<any[]>(
+    `https://api.escuelajs.co/api/v1/products/?categoryId=${categoryId}`
+  );
+
 }
+
+
+  getAllCategories(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.api}/categories`);
+  }
+}
+
+

@@ -62,8 +62,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.cart = cart;
     });
 
-    
-    
+  
   }
 
   ngOnDestroy(): void {
@@ -71,10 +70,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.searchSubscription?.unsubscribe();
   }
 
-  
-  
-
- 
 
   scrollToProducts(): void {
     document
@@ -146,12 +141,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   addToCart(product: any): void {
     if (!this.authService.isLogged()) {
       Swal.fire({
-        icon: 'warning',
-        title: 'Inicia sesión',
-        text: 'Debes iniciar sesión para agregar productos al carrito',
-        showCancelButton: true,
-        confirmButtonText: 'Ir a Login',
-        cancelButtonText: 'Cancelar'
+            icon: 'info',
+            title: 'Inicia sesión',
+            text: 'Debes iniciar sesión para agregar productos al carrito',
+            confirmButtonText: 'Ir al login'
       }).then(result => {
         if (result.isConfirmed) {
           this.router.navigate(['/login']);

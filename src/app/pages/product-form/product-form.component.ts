@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProductsService } from '../../services/product.service';
 import Swal from 'sweetalert2';
@@ -28,28 +33,43 @@ export class ProductFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-    this.editing = !!this.id;
+  this.id = Number(this.route.snapshot.paramMap.get('id'));
+  this.editing = !!this.id;
 
-    this.form = this.fb.group({
-title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      price: [0, [Validators.required, Validators.min(0)]],
-      description: ['', Validators.required],
-      categoryId: [1, Validators.required],
-      images: ['']
-    });
+  this.form = this.fb.group({
+    title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+    price: [0, [Validators.required, Validators.min(0)]],
+    description: ['', Validators.required],
+    categoryId: [1, Validators.required],
+    images: ['']
+  });
 
-    if (this.editing) {
-      this.loadProduct();
+  // 👇 ALERTA CUANDO SE PASA DE CARACTERES
+  this.form.get('title')?.valueChanges.subscribe(value => {
+    if (value && value.length > 50) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Límite alcanzado',
+        text: 'El título no puede tener más de 50 caracteres',
+        timer: 1800,
+        showConfirmButton: false
+      });
+
     }
-  }
+  });
 
-  loadProduct() {
+  if (this.editing) {
+    this.loadProduct();
+  }
+}
+
+
+  loadProduct(): void {
     this.productService.getById(this.id!).subscribe({
       next: (p) => {
         this.form.patchValue({
           title: p.title,
-          price: p.price,
+          price: p.price, // 👈 se carga tal cual
           description: p.description,
           categoryId: p.category?.id,
           images: p.images?.[0] || ''
@@ -58,27 +78,36 @@ title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(
     });
   }
 
-  save() {
+  save(): void {
     if (this.form.invalid) return;
 
     const data: CreateProductDTO = {
       title: this.form.value.title,
-      price: Number(this.form.value.price),
+      price: Number(this.form.value.price), // 👈 decimal
       description: this.form.value.description,
       categoryId: Number(this.form.value.categoryId),
       images: this.form.value.images ? [this.form.value.images] : []
     };
 
-    if (this.editing) {
-      this.productService.update(this.id!, data).subscribe(() => {
-        Swal.fire('Actualizado', 'Producto actualizado correctamente', 'success');
+    this.loading = true;
+
+    const request = this.editing
+      ? this.productService.update(this.id!, data)
+      : this.productService.create(data);
+
+    request.subscribe({
+      next: () => {
+        Swal.fire(
+          this.editing ? 'Actualizado' : 'Creado',
+          `Producto ${this.editing ? 'actualizado' : 'creado'} correctamente`,
+          'success'
+        );
         this.router.navigate(['/products']);
-      });
-    } else {
-      this.productService.create(data).subscribe(() => {
-        Swal.fire('Creado', 'Producto creado correctamente', 'success');
-        this.router.navigate(['/products']);
-      });
-    }
+      },
+      error: () => {
+        Swal.fire('Error', 'Ocurrió un error al guardar', 'error');
+        this.loading = false;
+      }
+    });
   }
 }
