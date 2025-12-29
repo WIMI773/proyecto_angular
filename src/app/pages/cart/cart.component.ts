@@ -65,8 +65,36 @@ clearCart() {
   });
 }
 
+payCart() {
+  if (this.cart.length === 0) {
+    Swal.fire('Carrito vacío', 'Agrega productos antes de pagar.', 'info');
+    return;
+  }
 
-//Total del carrito//.......
+  Swal.fire({
+    title: 'Procesando pago...',
+    text: 'Por favor, espera un momento',
+    timer: 1500,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  }).then(() => {
+    Swal.fire({
+      title: '¡Pago realizado!',
+      text: 'Tu compra ha sido procesada correctamente.',
+      icon: 'success',
+      confirmButtonText: 'Aceptar'
+    }).then(() => {
+      // Vaciar carrito usando el servicio
+      this.cartService.clearCart();
+
+      // También limpia localStorage si lo estás usando
+      localStorage.removeItem('cart');
+    });
+  });
+}
+
+
   getTotal() {
     return this.cartService.getTotal().toFixed();
   }

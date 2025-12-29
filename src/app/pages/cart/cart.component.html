@@ -2,11 +2,7 @@
   <h2>Mi Carrito</h2>
 
   <div class="cart-item" *ngFor="let item of cart">
-    <img
-      [src]="item.images?.[0]"
-      [alt]="item.title"
-      class="item-img"
-    />
+    <img [src]="item.images?.[0]" [alt]="item.title" class="item-img" />
 
     <div class="cart-info">
       <span class="item-title">{{ item.title }}</span>
@@ -30,11 +26,17 @@
     Total: ${{ getTotal() }}
   </div>
 
-  <button class="clear-cart-btn" (click)="clearCart()">
-    Vaciar carrito
-  </button>
-</div>
+  <div class="cart-actions">
+    <button class="clear-cart-btn" (click)="clearCart()">
+      Vaciar carrito
+    </button>
 
+    <!-- Botón Pagar separado -->
+    <button class="pagar-btn" (click)="payCart()">
+      Pagar
+    </button>
+  </div>
+</div>
 
 <ng-template #emptyCart>
   <p class="empty-text">Tu carrito está vacío.</p>

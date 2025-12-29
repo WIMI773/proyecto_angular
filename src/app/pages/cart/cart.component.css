@@ -111,6 +111,20 @@
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
+.pagar-btn {
+width: 100%;
+  padding: 12px;
+  background-color: #06a311 !important; 
+  color: rgb(255, 255, 255);
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
 /* Total del carrito */
 .cart-total {
   margin-top: 15px;
