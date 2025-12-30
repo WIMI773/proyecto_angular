@@ -52,17 +52,18 @@ private api = 'https://api.escuelajs.co/api/v1/products';
     return this.http.delete<void>(`${this.api}/${id}`, this.getAuthHeaders());
   }
 
-  getByCategory(categoryId: number) {
-  return this.http.get<any[]>(
-    `https://api.escuelajs.co/api/v1/products/?categoryId=${categoryId}`
-  );
-
-}
 
 
   getAllCategories(): Observable<any[]> {
     return this.http.get<any[]>(`${this.api}/categories`);
   }
+
+  getProductsByCategory(categoryId: number) {
+  return this.http.get<Product[]>(
+    `https://api.escuelajs.co/api/v1/products/?categoryId=${categoryId}`
+  );
 }
+}
+
 
 

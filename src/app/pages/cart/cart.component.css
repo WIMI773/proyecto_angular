@@ -1,4 +1,3 @@
-
 .cart-container {
   width: 100%;
   max-width: 400px;
@@ -76,11 +75,16 @@
 
 /* Boton eliminar */
 .remove-btn {
-  background-color: #000000;      /* rojo */
-  color: #ececec;                   /* texto blanco */
-  border: 1px solid #000000;       /* borde rojo oscuro */
-  border-radius: 6px;            /* esquinas redondeadas */
-  padding: 8px 14px;             /* tamaño del botón */
+  background-color: #000000;
+  /* rojo */
+  color: #ececec;
+  /* texto blanco */
+  border: 1px solid #000000;
+  /* borde rojo oscuro */
+  border-radius: 6px;
+  /* esquinas redondeadas */
+  padding: 8px 14px;
+  /* tamaño del botón */
   cursor: pointer;
   font-size: 0.95rem;
   font-weight: 500;
@@ -88,21 +92,25 @@
 }
 
 .remove-btn:hover {
-  background-color: #ececec;     /* rojo más oscuro */
+  background-color: #ececec;
+  /* rojo más oscuro */
   color: #000000;
 }
 
 .remove-btn:active {
-  transform: scale(0.95);        /* efecto click */
+  transform: scale(0.95);
+  /* efecto click */
 }
 
 
 .clear-cart-btn {
   width: 100%;
   padding: 12px;
-  background-color: #f9f9f9 !important; /* rojo */
+  background-color: #f9f9f9 !important;
+  /* rojo */
   color: rgb(0, 0, 0);
-  border: 1px solid #000000; /* borde rojo oscuro */
+  border: 1px solid #000000;
+  /* borde rojo oscuro */
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
@@ -111,18 +119,35 @@
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
+.clear-cart-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+
 .pagar-btn {
-width: 100%;
+  width: 100%;
   padding: 12px;
-  background-color: #06a311 !important; 
-  color: rgb(255, 255, 255);
-  border: 1px solid #ffffff;
+  background: linear-gradient(135deg, #30b264ff, #2ca15dff);
+  color: white;
   border-radius: 8px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: bold;
   cursor: pointer;
   margin-top: 15px;
   transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+
+.pagar-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.pagar-btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Total del carrito */
@@ -143,8 +168,8 @@ ng-template p {
 }
 
 
-.empty-text{
-    align-items: center;
+.empty-text {
+  align-items: center;
   padding: 12px 14px;
 
 }

@@ -8,7 +8,8 @@ import { CartService, CartItem } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { SearchService } from '../../services/search.service';
-
+import { CategoryService } from '../../services/categories.service';
+import { Category } from '../../../models/category.model';
 
 @Component({
   selector: 'app-home',
@@ -19,35 +20,36 @@ import { SearchService } from '../../services/search.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  
-  searchQuery = ''; //guarda lo que se busca
-  allProducts: any[] = []; //productos de la API
-  filteredProducts: any[] = []; 
+  //  BÚSQUEDA
+  searchQuery = '';
+  allProducts: any[] = [];
+  filteredProducts: any[] = [];
   loading = true;
   error = '';
 
-  
-  cart: CartItem[] = []; //variables del carrito
+  //  CATEGORÍAS
+  categories: Category[] = [];
+  selectedCategoryId: number | null = null;
+
+  //  CARRITO
+  cart: CartItem[] = [];
   cartSubscription?: Subscription;
   searchSubscription?: Subscription;
 
- 
-
   constructor(
-    //se inyectan todos los servicios necesarios
     private productsService: ProductsService,
+    private categoryService: CategoryService,
     private router: Router,
     public authService: AuthService,
     private cartService: CartService,
     private searchService: SearchService
   ) {}
 
-  
   ngOnInit(): void {
-    // Cargar productos desde la API
     this.loadProducts();
+    this.loadCategories();
 
-    // Escuchar búsqueda del navbar
+    
     this.searchSubscription = this.searchService.search$.subscribe(search => {
       this.searchQuery = search;
       this.searchProducts();
@@ -57,12 +59,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     });
 
-    //carrito se actualiza automaticamente
-    this.cartSubscription = this.cartService.cart$.subscribe(cart => { 
+   
+    this.cartSubscription = this.cartService.cart$.subscribe(cart => {
       this.cart = cart;
     });
-
-  
   }
 
   ngOnDestroy(): void {
@@ -70,14 +70,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.searchSubscription?.unsubscribe();
   }
 
-
-  scrollToProducts(): void {
-    document
-      .querySelector('.products-section-full')
-      ?.scrollIntoView({ behavior: 'smooth' });
-  }
-
   
+  //  PRODUCTOS
   loadProducts(): void {
     this.loading = true;
     this.productsService.getAll().subscribe({
@@ -87,28 +81,59 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.loading = false;
       },
       error: () => {
-        this.error = 'No se pudieron cargar los productos. Intenta más tarde.';
+        this.error = 'No se pudieron cargar los productos';
         this.loading = false;
       }
     });
   }
 
-  // Filtrar productos mientras escribes
+  
+  //  CATEGORÍAS
+  loadCategories(): void {
+  this.categoryService.getCategories().subscribe(categories => {
+    this.categories = categories.slice(0, categories.length - 5); // Excluir las últimas 5 categorías
+  });
+}
+
+  
+
+  filterByCategory(categoryId: number): void {
+    this.selectedCategoryId = categoryId;
+    this.loading = true;
+
+    this.productsService.getProductsByCategory(categoryId).subscribe({
+      next: products => {
+        this.filteredProducts = products;
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      }
+    });
+  }
+
+  clearCategoryFilter(): void {
+    this.selectedCategoryId = null;
+    this.filteredProducts = this.allProducts;
+  }
+
+  
+  //  BÚSQUEDA
   searchProducts(): void {
     const query = this.searchQuery.trim().toLowerCase();
 
     if (!query) {
-      // Mostrar todos los productos si el input está vacío
-      this.filteredProducts = this.allProducts;
+      this.filteredProducts = this.selectedCategoryId
+        ? this.filteredProducts
+        : this.allProducts;
       return;
     }
 
-    this.filteredProducts = this.allProducts.filter(product =>
+    this.filteredProducts = this.filteredProducts.filter(product =>
       product.title.toLowerCase().includes(query)
     );
   }
 
-  
   handleSearchNavigation(): void {
     if (!this.searchQuery.trim()) return;
 
@@ -129,22 +154,37 @@ export class HomeComponent implements OnInit, OnDestroy {
     Swal.fire({
       icon: 'info',
       title: 'Sin resultados',
-      text: 'No se encontraron productos con ese nombre'
+      text: 'No se encontraron productos'
     });
   }
-  
+
+  // ======================
+  // 🧭 NAVEGACIÓN
+  // ======================
   navigateToProductDetail(productId: number): void {
     this.router.navigate(['/products', productId]);
   }
 
-  
+  viewDetail(id: number): void {
+    this.router.navigate(['/products', id]);
+  }
+
+  scrollToProducts(): void {
+    document
+      .querySelector('.products-section-full')
+      ?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ======================
+  // 🛒 CARRITO
+  // ======================
   addToCart(product: any): void {
     if (!this.authService.isLogged()) {
       Swal.fire({
-            icon: 'info',
-            title: 'Inicia sesión',
-            text: 'Debes iniciar sesión para agregar productos al carrito',
-            confirmButtonText: 'Ir al login'
+        icon: 'info',
+        title: 'Inicia sesión',
+        text: 'Debes iniciar sesión para agregar productos',
+        confirmButtonText: 'Ir al login'
       }).then(result => {
         if (result.isConfirmed) {
           this.router.navigate(['/login']);
@@ -170,13 +210,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  
   onImageError(event: any): void {
     event.target.src = 'https://via.placeholder.com/250x250?text=Sin+imagen';
   }
-
-  viewDetail(id: number) {
-    this.router.navigate(['/products', id]);
-  }
-
 }

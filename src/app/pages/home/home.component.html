@@ -2,8 +2,11 @@
 
   <!-- ===== HERO ===== -->
   <header class="hero-banner">
-    <img src="https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg" alt="Banner principal"
-      class="hero-image" />
+    <img
+      src="https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg"
+      alt="Banner principal"
+      class="hero-image"
+    />
 
     <div class="hero-overlay">
       <h1>WStore</h1>
@@ -18,7 +21,44 @@
   <div class="container-main">
     <main class="products-section-full">
 
+     
+      <!--  CATEGORÍAS -->
+      <section class="categories-section">
+
+        <div class="categories-list">
+
+          <!-- TODAS -->
+          <button
+            class="category-card"
+            [class.active]="!selectedCategoryId"
+            (click)="clearCategoryFilter()">
+            <span>Todas</span>
+          </button>
+
+          <!-- LISTA -->
+          <button
+            class="category-card"
+            *ngFor="let category of categories"
+            [class.active]="selectedCategoryId === category.id"
+            (click)="filterByCategory(category.id)">
+
+            <img
+              [src]="category.image"
+              alt="{{ category.name }}"
+              class="category-image"
+            />
+
+            <span class="category-name">
+              {{ category.name }}
+            </span>
+          </button>
+
+        </div>
+      </section>
+
+     
       <!-- HEADER -->
+      
       <div class="section-header">
         <div class="header-left">
           <h2 class="section-title">Nuestros productos</h2>
@@ -40,17 +80,28 @@
       </div>
 
       <!-- GRID -->
-      <div class="products-grid" *ngIf="!loading && !error && filteredProducts.length > 0">
+      <div
+        class="products-grid"
+        *ngIf="!loading && !error && filteredProducts.length > 0">
 
-        <div class="product-card" *ngFor="let product of filteredProducts" (click)="viewDetail(product.id)">
+        <div
+          class="product-card"
+          *ngFor="let product of filteredProducts"
+          (click)="viewDetail(product.id)">
 
           <!-- IMAGE -->
           <div class="product-image-container">
-            <img [src]="product.images?.[0]" (error)="onImageError($event)" alt="{{ product.title }}"
-              class="product-image" />
+            <img
+              [src]="product.images?.[0]"
+              (error)="onImageError($event)"
+              alt="{{ product.title }}"
+              class="product-image"
+            />
 
             <div class="product-hover">
-              <button class="btn-view-detail" (click)="viewDetail(product.id); $event.stopPropagation()">
+              <button
+                class="btn-view-detail"
+                (click)="viewDetail(product.id); $event.stopPropagation()">
                 👁 Ver detalles
               </button>
             </div>
@@ -66,13 +117,12 @@
             </div>
 
             <p class="product-price">
-            <p class="product-price">
               $ {{ product.price | number:'1.2-2' }}
             </p>
 
-
-
-            <button class="btn-add-cart" (click)="addToCart(product); $event.stopPropagation()">
+            <button
+              class="btn-add-cart"
+              (click)="addToCart(product); $event.stopPropagation()">
               🛒 Agregar al carrito
             </button>
           </div>
@@ -81,7 +131,9 @@
       </div>
 
       <!-- EMPTY -->
-      <div *ngIf="!loading && !error && filteredProducts.length === 0" class="empty-state">
+      <div
+        *ngIf="!loading && !error && filteredProducts.length === 0"
+        class="empty-state">
         <h3>No se encontraron productos</h3>
         <p>Intenta con otra búsqueda</p>
       </div>
