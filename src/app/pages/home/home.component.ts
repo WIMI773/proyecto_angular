@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   //  CATEGORÍAS
   loadCategories(): void {
   this.categoryService.getCategories().subscribe(categories => {
-    this.categories = categories.slice(0, categories.length - 5); // Excluir las últimas 5 categorías
+    this.categories = categories.slice(0, categories.length - 2); // Excluir las últimas 5 categorías
   });
 }
 
