@@ -218,32 +218,34 @@
 .btn-edit,
 .btn-delete {
   flex: 1;
-  padding: 9px;
+  padding: 10px;
   border-radius: 8px;
-  font-size: .8rem;
-  font-weight: 600;
+  border: 1px solid #000000;
+  background: #ffffff;
+  color: #000000;
   cursor: pointer;
-  transition: .3s;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 .btn-edit {
-  background: #000;
-  color: #fff;
+  background: #ffffff;
+  color: #000000;
 }
 
 .btn-edit:hover {
-  background: #dfdfdf;
-  color: #000;
+  background: #000000;
+  color: #fdfafa;
 }
 
 .btn-delete {
   background: #fff;
-  color: #ef4444;
-  border: 1px solid #ef4444;
+  color: #000000;
+  border: 1px solid #000000;
 }
 
 .btn-delete:hover {
-  background: #ef4444;
+  background: #000000;
   color: #fff;
 }
 
