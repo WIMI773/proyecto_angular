@@ -46,24 +46,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.loadProducts();
-    this.loadCategories();
+  this.loadProducts();
 
-    
-    this.searchSubscription = this.searchService.search$.subscribe(search => {
-      this.searchQuery = search;
-      this.searchProducts();
+  this.categoryService.categories$.subscribe(categories => {
+    this.categories = categories; // ❌ SIN slice
+  });
 
-      if (this.filteredProducts.length === 1) {
-        this.navigateToProductDetail(this.filteredProducts[0].id);
-      }
-    });
+  this.searchSubscription = this.searchService.search$.subscribe(search => {
+    this.searchQuery = search;
+    this.searchProducts();
+  });
 
-   
-    this.cartSubscription = this.cartService.cart$.subscribe(cart => {
-      this.cart = cart;
-    });
-  }
+  this.cartSubscription = this.cartService.cart$.subscribe(cart => {
+    this.cart = cart;
+  });
+}
+
+
 
   ngOnDestroy(): void {
     this.cartSubscription?.unsubscribe();
@@ -88,12 +87,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   
-  //  CATEGORÍAS
-  loadCategories(): void {
-  this.categoryService.getCategories().subscribe(categories => {
-    this.categories = categories.slice(0, categories.length - 2); // Excluir las últimas 5 categorías
-  });
-}
+  
 
   
 

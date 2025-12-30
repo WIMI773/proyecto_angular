@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { CategoryService } from '../../services/categories.service';
 import { Category } from '../../../models/category.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-categories',
@@ -12,11 +13,11 @@ import { Category } from '../../../models/category.model';
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent implements OnInit, OnDestroy {
 
   categories: Category[] = [];
+  subscription?: Subscription;
 
-  // ✅ FORMULARIO SIMPLE (NO Category)
   form = {
     name: '',
     image: ''
@@ -28,34 +29,34 @@ export class CategoriesComponent implements OnInit {
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    this.loadCategories();
-  }
+  this.categoryService.categories$.subscribe(data => {
+    this.categories = data;
+  });
+}
 
-  loadCategories(): void {
-    this.categoryService.getCategories().subscribe(data => {
-      this.categories = data.slice(0, 5); // muestra 5;
-    });
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
   save(): void {
-    if (!this.form.name || !this.form.image) return;
+  if (!this.form.name || !this.form.image) return;
 
-    if (this.editing && this.selectedId !== undefined) {
-      this.categoryService.updateCategory(this.selectedId, this.form)
-        .subscribe(() => {
-          Swal.fire('Actualizada', 'Categoría actualizada', 'success');
-          this.reset();
-          this.loadCategories();
-        });
-    } else {
-      this.categoryService.createCategory(this.form)
-        .subscribe(() => {
-          Swal.fire('Creada', 'Categoría creada', 'success');
-          this.reset();
-          this.loadCategories();
-        });
-    }
+  if (this.editing && this.selectedId !== undefined) {
+    this.categoryService.updateCategory(this.selectedId, this.form)
+      .subscribe(() => {
+        Swal.fire('Actualizada', 'Categoría actualizada', 'success');
+        this.reset();
+      });
+  } else {
+    this.categoryService.createCategory(this.form)
+      .subscribe(() => {
+        Swal.fire('Creada', 'Categoría creada', 'success');
+        this.reset();
+      });
   }
+}
+
 
   edit(category: Category): void {
     this.form = {
@@ -67,22 +68,22 @@ export class CategoriesComponent implements OnInit {
   }
 
   delete(id?: number): void {
-    if (id === undefined) return;
+  if (!id) return;
 
-    Swal.fire({
-      title: '¿Eliminar categoría?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, eliminar'
-    }).then(result => {
-      if (result.isConfirmed) {
-        this.categoryService.deleteCategory(id).subscribe(() => {
+  Swal.fire({
+    title: '¿Eliminar categoría?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, eliminar'
+  }).then(result => {
+    if (result.isConfirmed) {
+      this.categoryService.deleteCategory(id)
+        .subscribe(() => {
           Swal.fire('Eliminada', 'Categoría eliminada', 'success');
-          this.loadCategories();
         });
-      }
-    });
-  }
+    }
+  });
+}
 
   reset(): void {
     this.form = { name: '', image: '' };
