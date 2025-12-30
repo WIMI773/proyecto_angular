@@ -1,0 +1,149 @@
+/* ===== CONTENEDOR ===== */
+.categories-crud {
+  width: 100%;
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===== TÍTULO ===== */
+.categories-crud h2 {
+  margin-bottom: 25px;
+  font-size: 1.6rem;
+  text-align: center;
+  font-weight: 700;
+  color: #000000;
+}
+
+/* ===== FORMULARIO ===== */
+.category-form {
+  max-width: 420px;
+  margin: 0 auto 50px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.category-form input {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #000000;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.category-form input:focus {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+}
+
+/* BOTONES FORM */
+.category-form button {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #000000;
+  background: #ffffff;
+  color: #000000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-form button[type="submit"] {
+  background: #000000;
+  color: #ffffff;
+}
+
+.category-form button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== LISTA ===== */
+.category-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+/* ===== CARD ===== */
+.category-item {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+}
+
+/* IMAGEN */
+.category-item img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+/* NOMBRE */
+.category-item span {
+  padding: 14px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: center;
+  color: #000000;
+}
+
+/* ===== ACCIONES ===== */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px 16px;
+}
+
+/* BOTONES ACCIÓN */
+.actions button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #000000;
+  background: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+/* EDITAR */
+.actions button:first-child:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* ELIMINAR */
+.actions button:last-child:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .category-item img {
+    height: 180px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}

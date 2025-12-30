@@ -1,0 +1,45 @@
+<div class="categories-crud">
+
+  <h2>{{ editing ? 'Editar categoría' : 'Nueva categoría' }}</h2>
+
+  <!-- FORM -->
+  <form (ngSubmit)="save()" class="category-form">
+    <input
+      type="text"
+      placeholder="Nombre"
+      [(ngModel)]="form.name"
+      name="name"
+      required
+    />
+
+    <input
+      type="text"
+      placeholder="URL imagen"
+      [(ngModel)]="form.image"
+      name="image"
+      required
+    />
+
+    <button type="submit">
+      {{ editing ? 'Actualizar' : 'Crear' }}
+    </button>
+
+    <button type="button" *ngIf="editing" (click)="reset()">
+      Cancelar
+    </button>
+  </form>
+
+  <!-- LIST -->
+  <div class="category-list">
+    <div class="category-item" *ngFor="let cat of categories">
+      <img [src]="cat.image" alt="{{ cat.name }}">
+      <span>{{ cat.name }}</span>
+
+      <div class="actions">
+        <button (click)="edit(cat)">✏️ Editar</button>
+        <button (click)="delete(cat.id)">🗑️Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+</div>
