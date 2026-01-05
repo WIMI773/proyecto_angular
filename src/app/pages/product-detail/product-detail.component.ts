@@ -65,12 +65,10 @@ export class ProductDetailComponent implements OnInit {
   });
 }
 
-
-
-
-
 goBack() {
   window.history.back();
 }
 
 }
+
+// ======================
