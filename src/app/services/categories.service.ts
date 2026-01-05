@@ -19,7 +19,7 @@ export class CategoryService {
 
   loadCategories() {
     return this.http.get<Category[]>(this.api)
-      .subscribe(data => this.categoriesSubject.next(data));
+      .subscribe(data => this.categoriesSubject.next(data.slice(0,6))); 
   }
 
   createCategory(category: Omit<Category, 'id'>) {
