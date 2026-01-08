@@ -30,38 +30,38 @@ export class ProductFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductsService
-  ) {}
+  ) { }
 
   ngOnInit() {
-  this.id = Number(this.route.snapshot.paramMap.get('id'));
-  this.editing = !!this.id;
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.editing = !!this.id;
 
-  this.form = this.fb.group({
-    title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-    price: [0, [Validators.required, Validators.min(0)]],
-    description: ['', Validators.required],
-    categoryId: [1, Validators.required],
-    images: ['']
-  });
+    this.form = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      price: [0, [Validators.required, Validators.min(0)]],
+      description: ['', Validators.required],
+      categoryId: [1, Validators.required],
+      images: ['']
+    });
 
-  // 👇 ALERTA CUANDO SE PASA DE CARACTERES
-  this.form.get('title')?.valueChanges.subscribe(value => {
-    if (value && value.length > 50) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Límite alcanzado',
-        text: 'El título no puede tener más de 50 caracteres',
-        timer: 1800,
-        showConfirmButton: false
-      });
+    // 👇 ALERTA CUANDO SE PASA DE CARACTERES
+    this.form.get('title')?.valueChanges.subscribe(value => {
+      if (value && value.length > 50) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Límite alcanzado',
+          text: 'El título no puede tener más de 50 caracteres',
+          timer: 1800,
+          showConfirmButton: false
+        });
 
+      }
+    });
+
+    if (this.editing) {
+      this.loadProduct();
     }
-  });
-
-  if (this.editing) {
-    this.loadProduct();
   }
-}
 
 
   loadProduct(): void {
@@ -83,7 +83,7 @@ export class ProductFormComponent implements OnInit {
 
     const data: CreateProductDTO = {
       title: this.form.value.title,
-      price: Number(this.form.value.price), // 👈 decimal
+      price: Math.trunc(this.form.value.price),
       description: this.form.value.description,
       categoryId: Number(this.form.value.categoryId),
       images: this.form.value.images ? [this.form.value.images] : []

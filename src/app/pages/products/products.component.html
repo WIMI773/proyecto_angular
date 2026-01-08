@@ -3,21 +3,14 @@
     <h1>Nuestros Productos</h1>
 
     <!-- Botón Crear producto solo si está logueado -->
-    <button
-      *ngIf="isLogged"
-      class="btn btn-success create-btn"
-      (click)="goToCreate()">
+    <button *ngIf="isLogged" class="btn btn-success create-btn" (click)="goToCreate()">
       ➕ Crear Producto
     </button>
   </div>
 
   <!-- Lista de productos -->
   <div class="products-container" *ngIf="products.length > 0">
-    <div
-      class="product-card"
-      *ngFor="let p of products"
-      (click)="viewDetail(p.id)"
-    >
+    <div class="product-card" *ngFor="let p of products" (click)="viewDetail(p.id)">
       <div class="product-image-wrapper">
         <img [src]="p.images?.[0]" [alt]="p.title" />
       </div>
@@ -29,8 +22,9 @@
         </div>
 
         <p class="product-price">
-          $ {{ p.price | number:'1.2-2' }}
+          {{ p.price | currency:' $ ':'symbol':'1.0-0' }}
         </p>
+
 
         <div class="product-meta">
           <span class="product-category">{{ p.category?.name }}</span>
@@ -38,20 +32,13 @@
 
         <div class="product-actions">
           <!-- Solo admin/logueado: Editar y Eliminar -->
-          <div
-            *ngIf="isLogged"
-            style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 5px;"
-          >
-            <button
-              class="btn-edit"
-              (click)="edit(p.id); $event.stopPropagation()">
+          <div *ngIf="isLogged" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 5px;">
+            <button class="btn-edit" (click)="edit(p.id); $event.stopPropagation()">
               🗑️ Editar
             </button>
 
-            <button
-              class="btn-delete"
-              (click)="delete(p.id); $event.stopPropagation()">
-             ✏️ Eliminar
+            <button class="btn-delete" (click)="delete(p.id); $event.stopPropagation()">
+              ✏️ Eliminar
             </button>
           </div>
         </div>
